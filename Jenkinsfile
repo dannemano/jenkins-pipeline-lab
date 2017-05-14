@@ -4,6 +4,9 @@ pipeline {
         maven 'maven_3.5.0'
         jdk 'JDK8'
     }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '4'))
+    }
     stages {
         stage ('Initialize') {
             steps {
@@ -16,7 +19,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                echo 'This is a minimal pipeline.'
+                sh 'mvn clean package'
             }
         }
     }
