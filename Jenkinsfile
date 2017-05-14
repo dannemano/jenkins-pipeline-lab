@@ -20,6 +20,7 @@ pipeline {
         stage ('Build') {
             steps {
                 sh 'mvn clean package'
+                archiveArtifacts artifacts: 'target/jenkins-*.jar', onlyIfSuccessful: true
             }
         }
     }
